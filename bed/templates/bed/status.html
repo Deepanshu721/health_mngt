@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %} Bed Status {% endblock title %}
+
+{% block body %}
+
+    <div class="container">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    <form class="form" method='GET' action=''>
+                        {% csrf_token %}
+                        <h3 class="text-center text-info">Bed Details</h3>
+                        <div class="form-group">
+                            <label for="bed_no" class="text-info">Bed No:</label><br>
+                            <select name='bed_no' class="form-control">
+                                {% for bed in bed_list %}
+                                    <option value='{{bed.id}}'>{{bed.id}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group text-center">
+                            <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                        </div>
+
+                        {% if bed %}
+                            <h4>Bed Type: {{bed.bedtype}}</h4>
+                            <br>
+                            <h4>Patient Name: {{patient}}</h4>
+                        {% endif %}
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}

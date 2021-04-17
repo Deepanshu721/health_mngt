@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %} Discharge Patient {% endblock title %}
+
+{% block body %}
+
+    {% comment %} <h4>Discharge Patient </h4>
+    
+    {% if msg %}
+        {{msg}}
+    {% endif %}
+    
+    <form method='POST' action=''>
+        {% csrf_token %}
+        <input type='number' name='id' />
+        <input type='submit' value='submit'>
+    </form> {% endcomment %}
+
+    <div class="container">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    <form class="form" method='POST' action=''>
+                        {% csrf_token %}
+                        {% if msg %}
+                            <h3 class="text-center">{{msg}}</h3>
+                        {% endif %}
+                        <h3 class="text-center text-info">Discharge Patient</h3>
+                        <div class="form-group">
+                            <label for="id" class="text-info">Patient Id:</label><br>
+                            <input class='form-control' type='number' name='id' />
+                        </div>
+                        <div class="form-group text-center">
+                            <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                        </div>
+
+                        {% for bed  in bed_list %}
+                            <h4>Bed No: {{bed.id}}</h4>
+                            <br>
+                        {% endfor %}
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}
